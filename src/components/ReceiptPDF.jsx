@@ -14,19 +14,34 @@ const styles = StyleSheet.create({
     padding: 30,
     fontFamily: 'Arial',
   },
-  section: {
-    margin: 10,
-    padding: 10,
+  table: {
+    display: 'table',
+    width: 'auto',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRightWidth: 0,
+    borderBottomWidth: 0,
+  },
+  tableRow: {
+    margin: 'auto',
+    flexDirection: 'row',
+  },
+  tableCol: {
+    width: '50%',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+  },
+  tableCell: {
+    margin: 'auto',
+    marginTop: 5,
+    fontSize: 10,
   },
   title: {
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 20,
-  },
-  text: {
-    margin: 12,
-    fontSize: 14,
-    textAlign: 'right',
   },
   header: {
     fontSize: 12,
@@ -38,15 +53,27 @@ const styles = StyleSheet.create({
 const ReceiptPDF = ({ receiptNumber }) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text style={styles.header}>עוסק פטור מס׳: 0318219523</Text>
-        <Text style={styles.title}>קבלה</Text>
-        <Text style={styles.text}>תאריך: {new Date().toLocaleDateString('he-IL')}</Text>
-        <Text style={styles.text}>מספר קבלה: {receiptNumber}</Text>
-        <Text style={styles.text}>סכום: ₪100</Text>
-        <Text style={styles.text}>עבור: שירותים</Text>
-        <Text style={styles.text}>תודה רבה!</Text>
+      <Text style={styles.header}>עוסק פטור מס׳: 0318219523</Text>
+      <Text style={styles.title}>קבלה</Text>
+      <View style={styles.table}>
+        <View style={styles.tableRow}>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>תאריך: {new Date().toLocaleDateString('he-IL')}</Text>
+          </View>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>מספר קבלה: {receiptNumber}</Text>
+          </View>
+        </View>
+        <View style={styles.tableRow}>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>סכום: ₪100</Text>
+          </View>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>עבור: שירותים</Text>
+          </View>
+        </View>
       </View>
+      <Text style={{ ...styles.tableCell, marginTop: 20, textAlign: 'center' }}>תודה רבה!</Text>
     </Page>
   </Document>
 );
