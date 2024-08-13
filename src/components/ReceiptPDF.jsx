@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     fontSize: 12,
+    textAlign: 'right',
   },
   title: {
     fontSize: 24,
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReceiptPDF = ({ receiptNumber }) => (
+const ReceiptPDF = ({ receiptNumber, receiptData }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <Text style={styles.header}>עוסק פטור מס׳: 0318219523</Text>
@@ -60,7 +61,7 @@ const ReceiptPDF = ({ receiptNumber }) => (
       <View style={styles.table}>
         <View style={styles.tableRow}>
           <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>תאריך: {new Date().toLocaleDateString('he-IL')}</Text>
+            <Text style={styles.tableCell}>תאריך: {receiptData.date}</Text>
           </View>
           <View style={styles.tableCol}>
             <Text style={styles.tableCell}>מספר קבלה: {receiptNumber}</Text>
@@ -68,10 +69,10 @@ const ReceiptPDF = ({ receiptNumber }) => (
         </View>
         <View style={styles.tableRow}>
           <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>סכום: ₪100</Text>
+            <Text style={styles.tableCell}>סכום: ₪{receiptData.amount}</Text>
           </View>
           <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>עבור: שירותים</Text>
+            <Text style={styles.tableCell}>עבור: {receiptData.description}</Text>
           </View>
         </View>
       </View>
