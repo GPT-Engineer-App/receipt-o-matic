@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRightWidth: 0,
     borderBottomWidth: 0,
+    marginTop: 20,
   },
   tableRow: {
     margin: 'auto',
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
   tableCell: {
     margin: 'auto',
     marginTop: 5,
-    fontSize: 10,
+    marginBottom: 5,
+    fontSize: 12,
   },
   title: {
     fontSize: 24,

@@ -26,19 +26,22 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-      <h1 className="text-4xl font-bold mb-8 text-right">מערכת יצירת קבלות</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">מערכת יצירת קבלות</h1>
       {!showPreview ? (
         <Button className="text-xl px-6 py-3" onClick={handleCreateReceipt}>
           יצר קבלה
         </Button>
       ) : (
         <div className="w-full max-w-3xl">
-          <PDFViewer width="100%" height="500px">
+          <PDFViewer width="100%" height="500px" className="mb-4">
             <ReceiptPDF receiptNumber={receiptNumber} />
           </PDFViewer>
-          <div className="mt-4 flex justify-between">
+          <div className="flex justify-between">
             <Button onClick={() => setShowPreview(false)}>ביטול</Button>
-            <PDFDownloadLink document={<ReceiptPDF receiptNumber={receiptNumber} />} fileName={`receipt-${receiptNumber}.pdf`}>
+            <PDFDownloadLink 
+              document={<ReceiptPDF receiptNumber={receiptNumber} />} 
+              fileName={`receipt-${receiptNumber}.pdf`}
+            >
               {({ blob, url, loading, error }) => (
                 <Button onClick={handleConfirmReceipt} disabled={loading}>
                   {loading ? 'טוען...' : 'אישור והורדה'}
