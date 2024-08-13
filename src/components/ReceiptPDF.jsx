@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 const ReceiptPDF = ({ receiptNumber, receiptData }) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      <Text style={styles.header}>עוסק פטור מס׳: 0318219523</Text>
+      <Text style={styles.header}>עוסק פטור מס׳: {receiptData.businessId}</Text>
       <Text style={styles.title}>קבלה</Text>
       <View style={styles.table}>
         <View style={styles.tableRow}>
@@ -64,15 +64,31 @@ const ReceiptPDF = ({ receiptNumber, receiptData }) => (
             <Text style={styles.tableCell}>תאריך: {receiptData.date}</Text>
           </View>
           <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>מספר קבלה: {receiptNumber}</Text>
+            <Text style={styles.tableCell}>שעה: {receiptData.time}</Text>
           </View>
         </View>
         <View style={styles.tableRow}>
           <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>סכום: ₪{receiptData.amount}</Text>
+            <Text style={styles.tableCell}>מספר קבלה: {receiptNumber}</Text>
           </View>
           <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>עבור: {receiptData.description}</Text>
+            <Text style={styles.tableCell}>תיאור המוצר: {receiptData.productDescription}</Text>
+          </View>
+        </View>
+        <View style={styles.tableRow}>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>מחיר ליחידה: ₪{receiptData.unitPrice}</Text>
+          </View>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>כמות: {receiptData.quantity}</Text>
+          </View>
+        </View>
+        <View style={styles.tableRow}>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>דמי משלוח: ₪{receiptData.shippingCost}</Text>
+          </View>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>סה"כ: ₪{receiptData.total}</Text>
           </View>
         </View>
       </View>
